@@ -1,0 +1,42 @@
+﻿@model Grupp4.Models.Game1Model
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Game 21</h2>
+
+@if (ViewBag.Result != null)
+
+{
+
+    <p>@ViewBag.Result</p>
+
+}
+
+@using (Html.BeginForm("Index", "Game1"))
+
+{
+
+    @Html.HiddenFor(x => x.CurrentValue);
+
+    @Html.DisplayTextFor(x => x.CurrentValue);
+
+
+
+    <br />
+
+    <label for="nummer1">1</label>
+
+    @Html.RadioButtonFor(x => x.ChoosenNumber, "1", new { id = "nummer1" })
+
+    <label for="number2">Eller 2</label>
+
+    @Html.RadioButtonFor(x => x.ChoosenNumber, "2", new { id = "nummer2" })
+
+    <br />
+
+    <input type="submit" value="Lägg till en siffra" />
+
+}
