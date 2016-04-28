@@ -13,54 +13,37 @@ namespace Grupp4.Controllers
         public ActionResult Index()
 
         {
-
             var model = new Game1Model();
-
             model.Start();
 
-
-
             return View(model);
-
         }
-
-
-
-
         [HttpPost]
 
         public ActionResult Index(Game1Model model)
 
         {
-
+            model.PlayerAddCurrentValue();
             if (model.PlayerIsWinner())
 
             {
 
                 ViewBag.Result = "You win.";
-
-
-
-
-
-
             }
-
-            else if (model.ComputerIsWinner())
+            model.ComputerAddCurrentValue();
+            if (model.ComputerIsWinner())
 
             {
-
                 ViewBag.Result = "Computer wins.";
-
-
-
+                model.CurrentValue = 0;
             }
-
             ModelState.Remove("CurrentValue");
 
             return View(model);
-
         }
 
+       
+
     }
+
 }

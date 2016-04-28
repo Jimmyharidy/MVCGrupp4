@@ -1,0 +1,22 @@
+﻿@model MCRazorsyntax.Models.RecipeDetailsModel
+@{
+    ViewBag.Title = "FullDetails";
+}
+
+<h2>FullDetails of @Model.Name</h2>
+<h3>Difficulty</h3>
+<p>@Model.Difficulty</p>
+
+<h3>Ingredients </h3>
+<p>
+    @(
+        Model.Ingredients.Length <20 ? Model.Ingredients : Model.Ingredients.Substring(0,17) + "..."
+    )
+</p>
+
+<h3>Time</h3>
+<p>@Model.CookingTime</p>
+
+<h3>Instructions</h3>
+<p>@Model.Instructions</p>
+

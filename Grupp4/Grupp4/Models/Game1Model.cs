@@ -30,7 +30,7 @@ namespace Grupp4.Models
                 return true;
             }
 
-            CurrentValue += ChoosenNumber;
+            
             return false;
         }
         public bool ComputerIsWinner()
@@ -39,8 +39,7 @@ namespace Grupp4.Models
             {
                 return true;
             }
-            ComputerLogic();
-            CurrentValue += Computer;
+           
             return false;
         }
         public int ComputerLogic()
@@ -62,6 +61,18 @@ namespace Grupp4.Models
         public void Start()
         {
             CurrentValue = 0;
+        }
+        public int PlayerAddCurrentValue()
+        {
+            CurrentValue += ChoosenNumber;
+            return CurrentValue;
+        }
+
+        public int ComputerAddCurrentValue()
+        {
+            ComputerLogic();
+            CurrentValue += Computer;
+            return CurrentValue;
         }
     }
 }

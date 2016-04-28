@@ -20,6 +20,8 @@
 {
 
     @Html.HiddenFor(x => x.CurrentValue);
+    <p>Computer added with: @Html.DisplayTextFor(c => c.Computer)</p>
+    <p>Player added with: @Html.DisplayTextFor(p => p.ChoosenNumber)</p>
 
     @Html.DisplayTextFor(x => x.CurrentValue);
 
