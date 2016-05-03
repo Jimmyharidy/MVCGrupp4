@@ -1,0 +1,29 @@
+﻿@model TicTacToe.Models.TicTacToeModel
+
+<link href="~/CSS/ButtonStyle.css" rel="stylesheet"/>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tic Tac Toe Game</h2>
+@*<h3>Show Clicked number:@Model.Input</h3>*@
+
+@using (Html.BeginForm("Index", "TicTacToe"))
+{
+    for (int i = 1; i < @Model.Board.Length; i++)
+    {
+
+        <button id="Button1" type="submit" value="@i" class="button" name="choice">@Convert.ToChar(Model.Board[i])</button>
+        if (i == 3 || i == 6)
+        {
+            <br />
+        }
+
+    }
+    
+
+}
+
+
+

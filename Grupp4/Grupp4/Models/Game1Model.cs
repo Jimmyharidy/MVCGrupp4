@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Grupp4.Models
+namespace Grupp4.Models  
 {
     public class Game1Model
     {
