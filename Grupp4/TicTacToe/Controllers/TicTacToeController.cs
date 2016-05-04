@@ -20,9 +20,21 @@ namespace TicTacToe.Controllers
         [HttpPost]
         public ActionResult Index(int? choice)
         {
-            var ticModel = (TicTacToeModel) this.Session["Tic"];
-            ticModel.Test(choice.Value);
-            return View(ticModel);
+            if (choice == 10)
+            {
+                var ticModel2 = new TicTacToeModel();
+                this.Session["Tic"] = ticModel2;
+                return View(ticModel2);
+            }
+            else
+            {
+                var ticModel = (TicTacToeModel)this.Session["Tic"];
+                ticModel.Human(choice.Value);
+                return View(ticModel);
+            }
+
         }
+
+
     }
 }

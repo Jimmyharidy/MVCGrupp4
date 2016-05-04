@@ -1,13 +1,13 @@
 ﻿@model TicTacToe.Models.TicTacToeModel
 
-<link href="~/CSS/ButtonStyle.css" rel="stylesheet"/>
+<link href="~/CSS/ButtonStyle.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Tic Tac Toe Game</h2>
-@*<h3>Show Clicked number:@Model.Input</h3>*@
+<h3>@Model.Output</h3>
 
 @using (Html.BeginForm("Index", "TicTacToe"))
 {
@@ -21,7 +21,15 @@
         }
 
     }
-    
+    <br/>
+    <br/>
+    for (int j = 10; j < 11; j++)
+    {
+        
+        <button id="Button1" type="submit" value="@j" class="button" name="choice" attribute="">Reset Game</button>
+    }
+
+
 
 }
 
