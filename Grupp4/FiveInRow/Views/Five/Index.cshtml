@@ -1,4 +1,6 @@
-﻿@model FiveInRow.Models.FiveRow
+﻿@using System.Net.Mime
+@using System.Web.UI.WebControls
+@model FiveInRow.Models.FiveRow
 <link href="~/Content/StyleSheet.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Index";
@@ -11,22 +13,27 @@
     <form>
         <fieldset class="scheduler-border">
 
-            @for (int i = 1; i <= 7; i++)
+            @for (int i = 0; i <= 6; i++)
             {
                 <button type="submit" name="choice" id="Button" value="@i" class="btn btn-secondary btn-lg">@i</button>
             }
 
 
 
-            @for (int i = 0; i < @Model.Board.GetLength(0); i++)
-            {
-                for (int j = 0; j < @Model.Board.GetLength(1); j++)
-                {
-                    <button type="button" id="@Model.Board[i,j]" disabled="disabled" style="background-color: @Model.Color" class="btn btn-secondary btn-lg">@i,@j</button>
-                }
+           @for (int i = 0; i < @Model.Board.GetLength(0); i++)
+           {
+               for (int j = 0; j < @Model.Board.GetLength(1); j++)
+               {
+                   var btnValue = $"{i},{j}";
+                   <button type="button" name="btnBoard" value="@btnValue" disabled="disabled" style="background-color: @Model.Strings[@i,@j]" class="btn btn-secondary btn-lg">@i,@j</button>
+                   
+               }
 
-            }
+           }
+            
 
-        </fieldset>
+
+
+        </fieldset>       
     </form>
 }
