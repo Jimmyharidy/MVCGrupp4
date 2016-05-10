@@ -22,21 +22,42 @@ namespace FiveInRow.Models
         public void Test1(int tal)
         {
 
-
-
-            for (int i = 0; i < 6; i++)
+            for (int i = 5; i >= 0 ; i--)
             {
-                if (Strings[i, tal] != PlayerColor || Strings[i, tal] == ComputerColor)
+                if (Strings[i, tal] != PlayerColor || Strings[i, tal] != ComputerColor)
                 {
-                    Strings[i, tal] = PlayerColor;
-
-
+                    if (Strings[i, tal] == null)
+                    {
+                        Strings[i, tal] = PlayerColor;
+                        break;
+                    }
+                    
+                    
+                                       
                 }
-
             }
-
+            ComputerMove();
 
         }
 
+        private void ComputerMove()
+        {
+            Random random = new Random();
+            var rnd = random.Next(0, 6);
+
+            for (int i = 5; i >= 0; i--)
+            {
+                if (Strings[i, rnd] != PlayerColor || Strings[i, rnd] != ComputerColor)
+                {
+                    if (Strings[i, rnd] == null)
+                    {
+                        Strings[i, rnd] = ComputerColor;
+                        break;
+                    }
+
+                }
+            }
+
+        }
     }
 }
