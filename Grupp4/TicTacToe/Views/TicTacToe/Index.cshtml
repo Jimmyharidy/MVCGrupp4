@@ -11,26 +11,21 @@
 
 @using (Html.BeginForm("Index", "TicTacToe"))
 {
-    for (int i = 1; i < @Model.Board.Length; i++)
-    {
-
-        <button id="Button1" type="submit" value="@i" class="button" name="choice">@Convert.ToChar(Model.Board[i])</button>
-        if (i == 3 || i == 6)
+    <table>
+        @for (int j = 0; j < 3; j++)
         {
-            <br />
+            <tr>
+                @for (int i = 0; i < 3; i++)
+                {
+                    int boardLocation = 3*j + i;
+                    <td><button type="submit" value="@boardLocation" class="tictactoeButton" name="choice">@Model.Board[boardLocation]</button></td>
+                }
+            </tr>
         }
-
-    }
+    </table>
     <br/>
     <br/>
-    for (int j = 10; j < 11; j++)
-    {
-        
-        <button id="Button1" type="submit" value="@j" class="button" name="choice" attribute="">Reset Game</button>
-    }
-
-
-
+    <button type="submit" value="10" class="tictactoeButton" name="choice" attribute="">Reset Game</button>
 }
 
 

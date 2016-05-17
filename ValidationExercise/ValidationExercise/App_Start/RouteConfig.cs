@@ -5,19 +5,19 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace TicTacToe
+namespace ValidationExercise
 {
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+                       
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "TicTacToe", action = "Index", id = UrlParameter.Optional }
-            );
+               name: "Default",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "Review", action = "Add", id = UrlParameter.Optional }
+           );
         }
     }
 }

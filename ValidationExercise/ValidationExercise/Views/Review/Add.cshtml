@@ -1,0 +1,24 @@
+﻿@model ValidationExercise.Models.ReviewModel
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add Review</h2>
+
+@using (Html.BeginForm())
+{
+    <table>
+        @foreach (var property in Model.GetType().GetProperties())
+        {
+            <tr>
+                @{ var inputId = property.Name + "Input";}
+                <td><label for="@inputId">@Html.DisplayName(property.Name)</label></td>
+                <td>@Html.TextBox(property.Name, "", new {Id = inputId})</td>
+                <td>@Html.ValidationMessage(property.Name, new {style="color: red;, font-weight: bold;"})</td>
+            </tr>
+        }
+    </table>
+    <input type="submit" value="Send" />
+}
+
+

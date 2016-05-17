@@ -1,96 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace TicTacToe.Models
 {
     public class TicTacToeModel
     {
-        bool gameIsOn = true;
+        private const char PLAYER = 'X';
+        private const char COMPUTER = 'O';
+        private List<int> Options { get; } = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+        private bool isGameOver;
 
-        public int[] Board { get; set; } = new int[10];
-        public string Output { get; set; }
-        public char Player { get; set; } = 'X';
-        public char Comp { get; set; } = 'O';
-        public int Moves { get; set; } = 9;
-        public List<int> Options { get; set; } = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, };
-        public bool IsGameOver { get; set; } = false;
+        public char[] Board { get; } = new char[9];
+        public string Output { get; private set; }
 
-       
+
         public void Human(int choice)
         {
-            Board[choice] = Player;
-            Options.Remove(choice);
-            Moves--;
-            Computer();
-            Winner(Player);
+            if (Board[choice] != PLAYER && Board[choice] != COMPUTER && !isGameOver)
+            {
+                Board[choice] = PLAYER;
+                Options.Remove(choice);
+                Winner(PLAYER);
+                if(!isGameOver)
+                    Computer();
+            }
         }
 
-        public void Computer()
+        private void Computer()
         {
-            if (Moves != 0)
+            if (Options.Count != 0)
             {
                 Random random = new Random();
                 var computerChoice = Options[random.Next(Options.Count)];
                 Options.Remove(computerChoice);
-                Board[computerChoice] = Comp;
-                Moves--;
-                Winner(Comp);
+                Board[computerChoice] = COMPUTER;
+                Winner(COMPUTER);
             }
             else
             {
-                Winner(Comp);
-                Tie();
-               
+                Output = " It's a Tie";
+                isGameOver = true;
             }
-
-
         }
 
-        //public void GameOver()
-        //{
-        //    IsGameOver = true;
-        //    Output = "Game Over";
-        //}
+        private void Winner(char user)
+        {
+            var winCombo1 = Board[0] == user && Board[1] == user && Board[2] == user;
+            var winCombo2 = Board[3] == user && Board[4] == user && Board[5] == user;
+            var winCombo3 = Board[6] == user && Board[7] == user && Board[8] == user;
+            var winCombo4 = Board[0] == user && Board[3] == user && Board[6] == user;
+            var winCombo5 = Board[1] == user && Board[4] == user && Board[7] == user;
+            var winCombo6 = Board[2] == user && Board[5] == user && Board[8] == user;
+            var winCombo7 = Board[2] == user && Board[4] == user && Board[6] == user;
+            var winCombo8 = Board[0] == user && Board[4] == user && Board[8] == user;
 
-        public void Tie()
-        {
-            Output = " Its a Tie";
-        }
-        public void Winner(char user)
-        {
-            if (Board[1] == user && Board[2] == user && Board[3] == user)
+            if (winCombo1 || winCombo2 || winCombo3 || winCombo4 || winCombo5 || winCombo6 || winCombo7 || winCombo8)
             {
                 Output = user + " Winner";
-            }
-            if (Board[4] == user && Board[5] == user && Board[6] == user)
-            {
-                Output = user + " Winner";
-            }
-            if (Board[7] == user && Board[8] == user && Board[9] == user)
-            {
-                Output = user + " Winner";
-            }
-            if (Board[1] == user && Board[4] == user && Board[7] == user)
-            {
-                Output = user + " Winner";
-            }
-            if (Board[2] == user && Board[5] == user && Board[8] == user)
-            {
-                Output = user + " Winner";
-            }
-            if (Board[3] == user && Board[6] == user && Board[9] == user)
-            {
-                Output = user + " Winner";
-            }
-            if (Board[3] == user && Board[5] == user && Board[7] == user)
-            {
-                Output = user + " Winner";
-            }
-            if (Board[1] == user && Board[5] == user && Board[9] == user)
-            {
-                Output = user + " Winner";
+                isGameOver = true;
             }
         }
     }
